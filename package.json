@@ -4,8 +4,8 @@
   "description": "",
   "main": "",
   "scripts": {
-    "bsctest:verify": "hardhat --network test etherscan-verify --solc-input",
-    "bscmain:verify": "hardhat --network mainnet etherscan-verify --solc-input"
+    "bsctest:verify": "hardhat --network bsctest etherscan-verify --solc-input",
+    "bscmain:verify": "hardhat --network bscmain etherscan-verify --solc-input"
   },
   "repository": {
     "type": "git",

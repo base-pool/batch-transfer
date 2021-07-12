@@ -65,6 +65,7 @@ module.exports = {
     namedAccounts: {
         deployer: {
             default: 0,
+            97: '0x92Ac13DfFf2e421e53dFD2873Ea295EdC9504764',
         },
         receiver: {
             default: '0x92Ac13DfFf2e421e53dFD2873Ea295EdC9504764',
@@ -76,14 +77,14 @@ module.exports = {
         bscmain: {
             url: `https://bsc-dataseed1.defibit.io/`,
             accounts: accounts,
-            gasPrice: 1.3 * 1000000000,
+            //gasPrice: 1.3 * 1000000000,
             chainId: 56,
             gasMultiplier: 1.5,
         },
         bsctest: {
             url: `https://data-seed-prebsc-1-s1.binance.org:8545`,
             accounts: accounts,
-            gasPrice: 1.3 * 1000000000,
+            //gasPrice: 1.3 * 1000000000,
             chainId: 97,
             tags: ["test"],
         },

@@ -3,6 +3,7 @@
 pragma solidity >=0.6.12;
 
 import '@openzeppelin/contracts/token/ERC20/IERC20.sol';
+import '@openzeppelin/contracts/token/ERC20/ERC20.sol';
 import '@openzeppelin/contracts/access/Ownable.sol';
 import '@openzeppelin/contracts/math/SafeMath.sol';
 import 'hardhat/console.sol';
@@ -15,6 +16,8 @@ contract TransferHelper is Ownable {
 
     event NewReceiver(address oldReceiver, address newReceiver);
     event NewFeePercent(uint256 oldFeePercent, uint256 newOldPercent);
+    event TransferFrom(address token, address from, address to, uint256 amount, bool success);
+    event BatchTransfer(address token, string symbol, uint256 decimals, address from, uint256 num, uint256 gasCost, uint256 gasFee);
 
     constructor(address payable _receiver, uint256 _feePercent) {
         require(_receiver != address(0), "illegal receiver");
@@ -32,6 +35,7 @@ contract TransferHelper is Ownable {
             // bytes4(keccak256(bytes('transferFrom(address,address,uint256)')));
             (bool success, bytes memory data) = _token.call(abi.encodeWithSelector(0x23b872dd, _from, _tos[i], _amounts[i]));
             success = (success && (data.length == 0 || abi.decode(data, (bool))));
+            emit TransferFrom(_token, _from, _tos[i], _amounts[i], success);
             if (!success) {
                 if (_ignoreError) {
                     continue;
@@ -46,6 +50,7 @@ contract TransferHelper is Ownable {
         if (msg.value.sub(fee) > 0) {
             receiver.transfer(msg.value.sub(fee));
         }
+        emit BatchTransfer(_token, ERC20(_token).symbol(), ERC20(_token).decimals(), _from, _tos.length, gasBefore.sub(gasAfter).mul(gasPrice), fee);
     }
 
     function setReceiver(address payable _receiver) external onlyOwner {
