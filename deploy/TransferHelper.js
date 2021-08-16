@@ -18,4 +18,4 @@ module.exports = async function ({
 };
 
 module.exports.tags = ['TransferHelper'];
-module.exports.dependencies = ['MockUSDT'];
+module.exports.dependencies = [/*'MockUSDT'*/];

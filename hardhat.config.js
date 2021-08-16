@@ -66,11 +66,12 @@ module.exports = {
         deployer: {
             default: 0,
             97: '0x92Ac13DfFf2e421e53dFD2873Ea295EdC9504764',
+            56: '0x156F75C8c00532ca3d21443b69d625E1AB90C2eD',
         },
         receiver: {
             default: '0x92Ac13DfFf2e421e53dFD2873Ea295EdC9504764',
             97: '0x92Ac13DfFf2e421e53dFD2873Ea295EdC9504764',
-            56: '0x92Ac13DfFf2e421e53dFD2873Ea295EdC9504764',
+            56: '0x156F75C8c00532ca3d21443b69d625E1AB90C2eD',
         },
     },
     networks: {
